@@ -31,15 +31,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li> -->
                 </ul>
                 <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasCart" role="button"
                    aria-controls="offcanvasExample">
@@ -80,13 +71,24 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div v-for="item in cart">
-                <div>
-                    <p>{{ item.destination }} {{ item.price }} CHF</p>
-                </div>
-            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Prix</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in cart">
+                    <td>{{ item.destination }}</td>
+                    <td>{{ item.price }} CHF</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold">Total</td>
+                    <td class="fw-bold">{{ totalPrice() }} CHF</td>
+                </tbody>
+            </table>
 
-            <p>Total : {{ totalPrice() }} CHF</p>
 
             <p class="badge text-bg-warning" v-if="premiumClient()">Vous êtes un client premium !!!</p>
             <p><a v-on:click="clearCart()" class="btn btn-primary">Vider le panier</a></p>
